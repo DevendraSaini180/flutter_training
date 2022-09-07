@@ -9,6 +9,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  //to get value from fields
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
