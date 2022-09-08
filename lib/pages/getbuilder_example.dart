@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_training/controllers/valuecontroller.dart';
 import 'package:get/get.dart';
 
 import '../controllers/getbuilder_example_controller.dart';
@@ -13,7 +14,7 @@ class GetBuilderExample extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightGreen,
-        title: Text("Use of GetBuilder"),
+        title: Text("Use of GetBuilder & Getx"),
       ),
       body: Center(
         child: Padding(
@@ -33,10 +34,27 @@ class GetBuilderExample extends StatelessWidget {
                   controller.incrementValue();
                 },
                 child: Text(
-                  "Increase Value",
+                  "Getbuilder",
                   style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
                 color: Colors.lightGreen,
+              ),
+              SizedBox(
+                height: 300,
+              ),
+              GetX<ValueController>(
+                init: ValueController(),
+                builder: (_) {
+                  return Text(
+                    "Fetch value: ${_.valueModel.value.value1}",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  );
+                },
+              ),
+              Padding(padding: EdgeInsets.all(5)),
+              Text(
+                "Getx Example",
+                style: TextStyle(fontSize: 16, color: Colors.blueAccent),
               ),
             ],
           ),
