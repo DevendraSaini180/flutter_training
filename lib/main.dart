@@ -1,34 +1,64 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_training/pages/login.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
+  static const String _title = 'Flutter Code Sample';
 
-class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Practice App"),
-        ),
-        body: SafeArea(
-          child: const Login(),
-        ),
+      title: _title,
+      home: MyStatefulWidget(),
+    );
+  }
+}
+
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({Key? key}) : super(key: key);
+
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+
+  bool _lightOn = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: Icon(
+              Icons.lightbulb_outlined,
+              color: _lightOn ? Colors.yellow : Colors.black,
+              size: 60,
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                _lightOn = !_lightOn;
+              });
+            },
+            child: Container(
+              color: Colors.yellow.shade600,
+              padding: const EdgeInsets.all(8),
+              child: Text(_lightOn ? "TURN LIGHT OFF" : "TURN LIGHT ON"),
+            ),
+          ),
+        ],
       ),
     );
   }
 }
+
